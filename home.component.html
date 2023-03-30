@@ -1,0 +1,39 @@
+<ActionBar class="action-bar">
+  <NavigationButton visibility="hidden"></NavigationButton>
+  <GridLayout columns="50, *">
+    <Label class="action-bar-title" text="Inicio" colSpan="2"></Label>
+
+    <Label class="fas" text="&#xf0c9;" (tap)="onDrawerButtonTap()"></Label>
+  </GridLayout>
+</ActionBar>
+
+<StackLayout class="page__content">
+  <Label textWrap="true"text="Porfavor, acepta los permisos para que pueda Georeferenciar las fotos. " id="introText"></Label>
+  <Button text="Permisos de localización" (tap)="geopermisos()"></Button>
+
+
+<!-- ID Foto Asociada -->
+<Label textWrap="true" text="ID Foto Asociada: "  id="introText"></Label>
+<TextField hint="ID Foto"
+         [text]='idfoto_textfield'
+         secure="false"
+         returnKeyType="done"
+         (returnPress)="guardaymuestra_idfoto($event)"
+         autocorrect="false"
+         maxLength="1000"
+         (focus)="onFocus($event)"
+         (blur)="onBlur($event)">
+</TextField>
+
+
+
+<Label textWrap="true" text="¡Toma la foto! " id="introText"></Label>
+<Button text="Tomar foto" (tap)="tomarfoto()" ></Button>
+<Button text="Ver última posición" (tap)="confirmar()" ></Button>
+
+<Label textWrap="true" text="Descarga los datos " id="introText"></Label>
+
+<Button text="Descargar los datos" (tap)="descarga()"></Button>
+
+
+</StackLayout>

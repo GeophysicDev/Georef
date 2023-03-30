@@ -1,0 +1,488 @@
+<!-------------------------------------------------------      Encabezados      ------------------------------------------------------->
+<ActionBar class="action-bar">
+  <NavigationButton visibility="hidden"></NavigationButton>
+  <GridLayout columns="50, *">
+    <Label class="action-bar-title" text="Encuesta" colSpan="2"></Label>
+
+    <Label class="fas" text="&#xf0c9;" (tap)="onDrawerButtonTap()"></Label>
+  </GridLayout>
+</ActionBar>
+
+
+<!------------------------------------------------------- Contenido de la encuesta ------------------------------------------------------->
+
+ <!------------------- Preguntas relacionadas con datos del encuestado ------------------->
+  <ScrollView orientation="vertical">
+    <StackLayout>
+
+  <!-- Encabezado -->
+    <Label textWrap="true" text="Encuesta percepción de Riesgo Sísmico" class="h1" ></Label>
+    <Label  textWrap="true" text="Realizada por el Instituto de Geografía" class="h2" ></Label>
+    <Label  textWrap="true" text=" de la UNAM." class="h2" ></Label>
+    <Label  textWrap="true" text="Todos los derechos reservados." class="h2" ></Label>
+
+
+  <!-- ID encuesta -->
+    <Label textWrap="true" text="ID Encuesta: "  id="introText1"></Label>
+    <TextField hint="ID encuesta "
+         [text]='idencuesta'
+         secure="false"
+         backgroundColor="lightyellow"
+         returnKeyType="done"
+         (returnPress)="guardaymuestra_idencuesta($event)"
+         autocorrect="false"
+         maxLength="100"
+         (focus)="onFocus($event)"
+         (blur)="onBlur($event)">
+    </TextField>
+
+  <!-- ID Foto Asociada -->
+    <Label textWrap="true" text="ID Foto Asociada: "  id="introText1"></Label>
+    <TextField hint="ID Foto"
+         [text]='idfoto'
+         secure="false"
+         backgroundColor="lightyellow"
+         returnKeyType="done"
+         (returnPress)="guardaymuestra_idfoto($event)"
+         autocorrect="false"
+         maxLength="100"
+         (focus)="onFocus($event)"
+         (blur)="onBlur($event)">
+    </TextField>
+
+    <!-- Religión  -->
+    <Label textWrap="true" text="Religión: " id="introText1" ></Label>
+    <TextField hint="Ingresa tu Religión "
+          [text]="religion"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_religion($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Alcaldía  -->
+  <Label textWrap="true" text="Alcaldía: " id="introText1" ></Label>
+  <TextField hint="Ingresa tu Alcaldía "
+            [text]="alcaldia"
+            secure="false"
+            backgroundColor="lightyellow"
+            returnKeyType="done"
+            (returnPress)="guardaymuestra_alcaldia($event)"
+            autocorrect="false"
+            maxLength="200"
+            class="introText"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)">
+</TextField>
+
+<!-- Localidad -->
+<Label textWrap="true" text="Localidad: " id="introText1" ></Label>
+<TextField hint="Ingresa tu Localidad "
+          [text]="localidad"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_localidad($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Tiempo de residencia en la localidad -->
+<Label textWrap="true" text="Tiempo de residencia en la Localidad: " id="introText1" ></Label>
+<TextField hint="Ingresa el tiempo "
+          [text]="tresidencia"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_tresidencia($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Profesión/oficio -->
+<Label  textWrap="true" text="Profesión/oficio: " id="introText1" ></Label>
+<TextField hint="Ingresa tu Profesión/oficio "
+          [text]="profesion"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_profesion($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Email -->
+<Label  textWrap="true" text="Email: " id="introText1" ></Label>
+<TextField hint="Ingresa email "
+          [text]="userMail"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_userMail($event)"
+          autocorrect="false"
+          maxLength="500"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Edad -->
+<Label textWrap="true" text="Edad: " id="introText1" ></Label>
+<TextField hint="Ingresa tu edad "
+          [text]="edad"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_edad($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Sexo -->
+<Label textWrap="true" text="Sexo: " id="introText1" ></Label>
+<Button text="Seleeciona una opción" (tap)="guardaymuestra_sexo()" class="btn2"></Button>
+
+<!------------------- Preguntas relacionadas con la encuesta ------------------->
+
+<!-- Pregunta 1, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 1 " id="introText1" ></Label>
+<Label textWrap = "true" text="En general, usted diria que la cultura y tradiciones de su localidad son:" id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p1()" class="btn2"></Button>
+
+<!-- Pregunta 2, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 2 " id="introText1" ></Label>
+<Label textWrap="true" text="¿En su comunidad qué tanto le preocupa que suceda este fenomeno natural?,
+como por ejemplo, sismo, deslave, inundación, incendio" id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p2()"class="btn2"></Button>
+
+<!-- Pregunta 3, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 3 " id="introText1" ></Label>
+<Label textWrap="true" text=" Pensando en los fenómenos naturales que pasan en su comunidad, para usted, ¿Cuáles son
+ los que le han afectado más? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p3()"class="btn2"></Button>
+
+<!-- Pregunta 4, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 4 " id="introText1" ></Label>
+<Label textWrap="true" text=" ¿Para usted que nivel de importancia tiene para Iglesia de Santa Rosa de Lima? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p4()"class="btn2"></Button>
+
+<!-- Pregunta 5, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 5 " id="introText1" ></Label>
+<Label textWrap="true" text=" ¿Para usted qué grado de relevancia tiene los bienes culturales de la
+Parroquia de Santa Rosa de Lima? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p5()"class="btn2"></Button>
+
+<!-- Pregunta 6, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 6 " id="introText1" ></Label>
+<Label textWrap="true" text=" ¿Qué cree que causa que haya daños cuando sucede un fenomeno natural?" id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p6()" class="btn2"></Button>
+
+<!-- Pregunta 7, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 7 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Usted considera parte de su identidad cultural la Parroquia de Santa Rosa
+de Lima y los bienes culturales que se vieron afectados en el sismo 2017?: " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ7"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p7($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 8, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 8 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Cómo clasificaría los daños en la Parroquia de Santa Rosa de Lima
+ y sus bienes culturales?" id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ8"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p8($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 9, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 9 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Usted participaría en el rescate de los bienes culturales de
+ la Parroquia de Santa Rosa de Lima que fueron afectados  en el Sismo del 2017?  " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ9"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p9($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 10, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 10 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Usted conoce los riesgos a los que se expone el personal de intervención en
+ inmuebles afectados con sismos para el rescate de bienes culturales? " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ10"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p10($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 11, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 11 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Qué riesgos usted conoce ante el ingreso a inmuebles afectados por sismos? " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ11"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p11($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 12, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 12 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Qué capacitación ha tomado usted para atender emergencias en inmuebles afectados
+ por sismos? " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ12"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p12($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 13, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 13 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Usted conoce los métodos y técnicas necesarias para la conservación
+de bienes culturales rescatados de inmuebles afectados por sismos?" id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ13"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p13($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 14, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 14 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Cómo clasificaría el nivel de especialización que requiere el
+personal de intervención en inmuebles afectados por sismos  para el rescate de bienes culturales?" id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ14"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p14($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 15, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 15 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Usted conoce el plan de emergencia para el rescate de
+bienes culturales en caso de desastres?" id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ15"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p15($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 16, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 16 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Cómo clasificaría la importancia de contar con una red de apoyo
+para el rescate de bienes culturales afectados por eventos sísmicos? " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ16"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p16($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+
+<!-- Pregunta 17, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 17" id="introText1" ></Label>
+<Label textWrap="true" text="¿Con base en su experiencia como reduciría los
+riesgos de la población que interviene en inmuebles afectados por sismos para el
+rescate de bienes culturales? (opción múltiple)" id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ17"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p17($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+
+<!-- Pregunta 18, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 18 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Usted qué clasificación de riesgo daría a una intervención
+civil en un rescate dentro de un edificio con afectaciones estructurales?" id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ18"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p18($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 19, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 19" id="introText1" ></Label>
+<Label textWrap="true" text="¿Conoce el procedimineto apropiado para el manejo de bienes culturales? " id="introText" ></Label>
+<TextField hint="Respuesta abierta "
+          [text]="userQ19"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p19($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 20, Opción Multiple -->
+<Label textWrap="true" text="Pregunta 20" id="introText1" ></Label>
+<Label textWrap="true" text="¿Sabe de algun accidente por el ingreso a inmubles afectados por sismos? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p20()" class="btn2"></Button>
+
+<!-- Pregunta 21, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 21 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Quién da la señal, alerta o aviso para rescatar los bienes de la iglesia?" id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p21()" class="btn2"></Button>
+
+
+<!-- Pregunta 22, Opción Multiple  -->
+<Label textWrap="true" text="Pregunta 22 " id="introText1" ></Label>
+<Label textWrap="true" text="En caso de que se necesiten ¿dónde se resguardarian los bienes culturales de
+ la iglesia? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p22()" class="btn2"></Button>
+
+
+<!-- Pregunta 23, Opción Multiple -->
+<Label textWrap="true" text="Pregunta 23 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Alguna vez ha vivido un fenómeno natural? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p23()" class="btn2"></Button>
+
+
+<!-- Pregunta 24, Respuesta abierta -->
+<Label textWrap="true" text="Pregunta 24 " id="introText1" ></Label>
+<Label textWrap="true" text="Si le indicaran que usted debe de entrar a la iglesia a recuperar los bienes culturales,
+ ¿acudiría al rescate de los bienes culturales? " id="introText" ></Label>
+
+<TextField hint="Respuesta abierta "
+          [text]="userQ24"
+          secure="false"
+          backgroundColor="lightyellow"
+          returnKeyType="done"
+          (returnPress)="guardaymuestra_p24($event)"
+          autocorrect="false"
+          maxLength="200"
+          class="introText"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+</TextField>
+
+<!-- Pregunta 25, Opción Multiple -->
+<Label textWrap="true" text="Pregunta 25 " id="introText1" ></Label>
+<Label textWrap="true" text="¿Alguien depende economicamente de usted? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p25()" class="btn2"></Button>
+
+
+<!-- Pregunta 26, Opción Multiple -->
+<Label textWrap="true" text="Pregunta 26 " id="introText1" ></Label>
+<Label textWrap="true" text="Su vivienda sufrio daños por el sismo del 2017? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p26()" class="btn2"></Button>
+
+<!-- Pregunta 27, Opción Multiple -->
+<Label textWrap="true" text="Pregunta 27 " id="introText1" ></Label>
+<Label textWrap="true" text="Los daños en su vivienda fueron:" id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p27()" class="btn2"></Button>
+
+<!-- Pregunta 28, Opción Multiple -->
+<Label textWrap="true" text="Pregunta 28 " id="introText1" ></Label>
+<Label textWrap="true" text="Usted acude a la Iglesia de Santa Rosa de Lima? " id="introText" ></Label>
+<Button text="Seleeciona una opción" (tap)="opcion_multiple_p28()" class="btn2"></Button>
+
+
+<!-- Finalización de la encuesta  -->
+<Button text="Confirmar datos" (tap)="confirmacion_datos_encuesta()" class="btn" ></Button>
+<Button text="Finalizar Encuesta" (tap)="guardador()" class="btn" ></Button>
+    </StackLayout>
+  </ScrollView>
+
